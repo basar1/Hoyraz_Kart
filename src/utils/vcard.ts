@@ -51,7 +51,7 @@ export function buildVCard(employee: Employee, officeName: string, website: stri
   pushLine(lines, `FN;CHARSET=UTF-8:${escapeVCardValue(personalInfo.fullName)}`);
   pushLine(lines, `ORG;CHARSET=UTF-8:${escapeVCardValue(officeName)}`);
   pushLine(lines, `TITLE;CHARSET=UTF-8:${escapeVCardValue(personalInfo.title)}`);
-  pushLine(lines, `TEL;TYPE=CELL,VOICE:${normalizePhone(contact.phone)}`);
+  pushLine(lines, `TEL;TYPE=CELL:${normalizePhone(contact.phone)}`);
   pushLine(lines, contact.email.trim() ? `EMAIL;TYPE=INTERNET:${contact.email.trim()}` : null);
   pushLine(lines, website ? `URL:${website}` : null);
   pushLine(lines, `ADR;CHARSET=UTF-8;TYPE=WORK:;;${escapeVCardValue(contact.address)};;;;`);
@@ -67,36 +67,21 @@ function isIosDevice(): boolean {
   return /Macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
 }
 
-function triggerDownload(content: string, fileName: string): void {
-  const blob = new Blob([content], { type: "text/vcard;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = fileName;
-  anchor.rel = "noopener";
-  anchor.style.display = "none";
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-  window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+export function vcardPath(slug: string): string {
+  return `/vcards/${slug}.vcf`;
+}
+
+export function vcardDownloadName(fullName: string): string {
+  return vcardFileName(fullName);
 }
 
 /**
- * Tıklanınca UTF-8 vCard 3.0 üretir.
- * iPhone ve iPad’de Safari Kişiler’i data URI ile açar.
- * Android ve masaüstünde Blob ile .vcf indirilir.
+ * iPhone ve iPad, `download` ile dosyayı Kişiler yerine Dosyalar’a kaydeder.
+ * Aynı adresteki .vcf dosyasına gidince sistem rehberi açılır.
+ * `data:` adresleri canlı sitede Safari tarafından engellenir.
  */
-export function downloadVCard(employee: Employee, officeName: string): void {
-  if (typeof window === "undefined" || typeof document === "undefined") return;
-
-  const website = employee.contact.website.trim() || window.location.origin;
-  const content = buildVCard(employee, officeName, website);
-
-  if (isIosDevice()) {
-    const vcardText = content.replace(/^\uFEFF/, "");
-    window.location.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(vcardText)}`;
-    return;
-  }
-
-  triggerDownload(content, vcardFileName(employee.personalInfo.fullName));
+export function openVCard(event: { preventDefault(): void; currentTarget: { href: string } }): void {
+  if (!isIosDevice()) return;
+  event.preventDefault();
+  window.location.assign(event.currentTarget.href);
 }
