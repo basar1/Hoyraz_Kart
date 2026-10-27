@@ -8,7 +8,7 @@ import { LegalNotice } from "@/components/LegalNotice";
 import { RoundPortrait } from "@/components/Portrait";
 import { InstagramIcon, LinkedInIcon, WhatsAppIcon, XIcon } from "@/components/icons";
 import { companyConfig, type Employee } from "@/data/companyConfig";
-import { downloadVCard } from "@/utils/vcard";
+import { vcardHref } from "@/utils/vcard";
 import { telHref, whatsappHref } from "@/utils/links";
 
 const actionClass =
@@ -57,14 +57,13 @@ export function DigitalCard({ employee }: { employee: Employee }) {
           ) : null}
         </div>
 
-        <button
-          type="button"
-          onClick={() => downloadVCard(employee, office.name)}
+        <a
+          href={vcardHref(employee.slug)}
           className="relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-4 text-base font-semibold text-on-accent shadow-lg transition hover:bg-accent-hover"
         >
           <Download className="size-5" aria-hidden="true" />
           Rehbere Kaydet (.vcf)
-        </button>
+        </a>
         <p className="relative mt-2 text-center text-[11px] text-on-hero-muted">
           iPhone ve Android rehberlerine uygun vCard dosyası.
         </p>
