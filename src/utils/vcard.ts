@@ -67,21 +67,33 @@ function isIosDevice(): boolean {
   return /Macintosh/i.test(ua) && navigator.maxTouchPoints > 1;
 }
 
-export function vcardPath(slug: string): string {
-  return `/vcards/${slug}.vcf`;
-}
-
-export function vcardDownloadName(fullName: string): string {
-  return vcardFileName(fullName);
+function triggerDownload(content: string, fileName: string): void {
+  const blob = new Blob([content], { type: "text/vcard;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = fileName;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1500);
 }
 
 /**
- * iPhone ve iPad, `download` ile dosyayı Kişiler yerine Dosyalar’a kaydeder.
- * Aynı adresteki .vcf dosyasına gidince sistem rehberi açılır.
- * `data:` adresleri canlı sitede Safari tarafından engellenir.
+ * Sayfa adresini .vcf dosyasına çevirme. Safari bu dosyayı sayfa sanıp açmıyor.
+ * iPhone’da Kişiler, tıklamayla üretilen vCard ile açılır.
  */
-export function openVCard(event: { preventDefault(): void; currentTarget: { href: string } }): void {
-  if (!isIosDevice()) return;
-  event.preventDefault();
-  window.location.assign(event.currentTarget.href);
+export function downloadVCard(employee: Employee, officeName: string): void {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+
+  const website = employee.contact.website.trim() || window.location.origin;
+  const content = buildVCard(employee, officeName, website);
+
+  if (isIosDevice()) {
+    const vcardText = content.replace(/^\uFEFF/, "");
+    window.location.href = `data:text/vcard;charset=utf-8,${encodeURIComponent(vcardText)}`;
+    return;
+  }
+
+  triggerDownload(content, vcardFileName(employee.personalInfo.fullName));
 }
