@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+:root,
+[data-theme="obsidian-gold"] {
+  --canvas: #09090b;
+  --surface: #121215;
+  --hero: #09090b;
+  --hero-elevated: #121215;
+  --ink: #f4f4f5;
+  --ink-soft: #d4d4d8;
+  --muted: #a1a1aa;
+  --on-hero: #f4f4f5;
+  --on-hero-muted: #a1a1aa;
+  --accent: #d4af37;
+  --accent-hover: #e6c45c;
+  --accent-2: #d4af37;
+  --on-accent: #09090b;
+  --topbar: #09090b;
+  --on-topbar: #f4f4f5;
+  --topbar-accent: #d4af37;
+  --header: #121215;
+  --line: rgba(212, 175, 55, 0.35);
+  --input: #18181b;
+  --action: #1c1c21;
+  --accent-soft: rgba(212, 175, 55, 0.14);
+  --overlay: rgba(0, 0, 0, 0.72);
+  --hero-glow: rgba(212, 175, 55, 0.2);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  color-scheme: dark;
+}
+
+[data-theme="navy-bronze"] {
+  --canvas: #0b132b;
+  --surface: #1c2541;
+  --hero: #0b132b;
+  --hero-elevated: #1c2541;
+  --ink: #f8fafc;
+  --ink-soft: #e2e8f0;
+  --muted: #94a3b8;
+  --on-hero: #f8fafc;
+  --on-hero-muted: #cbd5e1;
+  --accent: #c5a059;
+  --accent-hover: #d4af37;
+  --accent-2: #d4af37;
+  --on-accent: #0b132b;
+  --topbar: #0b132b;
+  --on-topbar: #f8fafc;
+  --topbar-accent: #d4af37;
+  --header: #1c2541;
+  --line: rgba(197, 160, 89, 0.38);
+  --input: #121a33;
+  --action: #243056;
+  --accent-soft: rgba(197, 160, 89, 0.16);
+  --overlay: rgba(0, 0, 0, 0.72);
+  --hero-glow: rgba(197, 160, 89, 0.22);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  color-scheme: dark;
+}
+
+[data-theme="emerald-cream"] {
+  --canvas: #071f18;
+  --surface: #0d3328;
+  --hero: #071f18;
+  --hero-elevated: #0d3328;
+  --ink: #f5f5f0;
+  --ink-soft: #e7e5d8;
+  --muted: #b7c4b8;
+  --on-hero: #f5f5f0;
+  --on-hero-muted: #c9d4c8;
+  --accent: #d4af37;
+  --accent-hover: #e6c45c;
+  --accent-2: #e6c45c;
+  --on-accent: #071f18;
+  --topbar: #071f18;
+  --on-topbar: #f5f5f0;
+  --topbar-accent: #d4af37;
+  --header: #0d3328;
+  --line: rgba(212, 175, 55, 0.35);
+  --input: #0a2820;
+  --action: #12483a;
+  --accent-soft: rgba(212, 175, 55, 0.16);
+  --overlay: rgba(0, 0, 0, 0.72);
+  --hero-glow: rgba(212, 175, 55, 0.2);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  color-scheme: dark;
+}
+
+[data-theme="bordeaux-ivory"] {
+  --canvas: #faf8f5;
+  --surface: #f0ece1;
+  --hero: #f0ece1;
+  --hero-elevated: #faf8f5;
+  --ink: #18181b;
+  --ink-soft: #3f3f46;
+  --muted: #5c564e;
+  --on-hero: #18181b;
+  --on-hero-muted: #5c564e;
+  --accent: #721c24;
+  --accent-hover: #5a151c;
+  --accent-2: #b8860b;
+  --on-accent: #faf8f5;
+  --topbar: #721c24;
+  --on-topbar: #faf8f5;
+  --topbar-accent: #f3e0a8;
+  --header: #faf8f5;
+  --line: rgba(114, 28, 36, 0.22);
+  --input: #ffffff;
+  --action: #ffffff;
+  --accent-soft: rgba(114, 28, 36, 0.08);
+  --overlay: rgba(24, 24, 27, 0.55);
+  --hero-glow: rgba(184, 134, 11, 0.16);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  color-scheme: light;
+}
+
+[data-theme="emerald-dark"] {
+  --canvas: #ffffff;
+  --surface: #f4f7fa;
+  --hero: #f3f6f9;
+  --hero-elevated: #ffffff;
+  --ink: #1c2b3a;
+  --ink-soft: #3d5166;
+  --muted: #6b7c8d;
+  --on-hero: #1c2b3a;
+  --on-hero-muted: #5c6e80;
+  --accent: #375f89;
+  --accent-hover: #2c4d72;
+  --accent-2: #4d7094;
+  --on-accent: #ffffff;
+  --topbar: #2c4a68;
+  --on-topbar: #f7f9fb;
+  --topbar-accent: #d5e3f0;
+  --header: #ffffff;
+  --line: rgba(55, 95, 137, 0.16);
+  --input: #ffffff;
+  --action: #f7f9fb;
+  --accent-soft: rgba(55, 95, 137, 0.08);
+  --overlay: rgba(28, 43, 58, 0.45);
+  --hero-glow: rgba(55, 95, 137, 0.07);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  color-scheme: light;
+}
+
+[data-theme="emerald-white"] {
+  --canvas: #ffffff;
+  --surface: #f4f7f5;
+  --hero: #f7faf8;
+  --hero-elevated: #ffffff;
+  --ink: #24312d;
+  --ink-soft: #5e6b66;
+  --muted: #7d8a85;
+  --on-hero: #24312d;
+  --on-hero-muted: #6b7873;
+  --accent: #0c4a3e;
+  --accent-hover: #08352d;
+  --accent-2: #0f6e56;
+  --on-accent: #ffffff;
+  --topbar: #0c4a3e;
+  --on-topbar: #f4f7f5;
+  --topbar-accent: #d7efe4;
+  --header: #ffffff;
+  --line: rgba(12, 74, 62, 0.16);
+  --input: #ffffff;
+  --action: #f7faf8;
+  --accent-soft: rgba(12, 74, 62, 0.08);
+  --overlay: rgba(18, 32, 28, 0.45);
+  --hero-glow: rgba(12, 74, 62, 0.08);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-hero: var(--hero);
+  --color-hero-elevated: var(--hero-elevated);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-on-hero: var(--on-hero);
+  --color-on-hero-muted: var(--on-hero-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-2: var(--accent-2);
+  --color-on-accent: var(--on-accent);
+  --color-topbar: var(--topbar);
+  --color-on-topbar: var(--on-topbar);
+  --color-topbar-accent: var(--topbar-accent);
+  --color-header: var(--header);
+  --color-line: var(--line);
+  --color-input: var(--input);
+  --color-action: var(--action);
+  --color-accent-soft: var(--accent-soft);
+  --color-overlay: var(--overlay);
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+body:has([data-page="kart"]) {
+  background-color: var(--hero);
+  color: var(--on-hero);
+}
+
+.theme-glow {
+  background: radial-gradient(ellipse at top right, var(--hero-glow), transparent 46%);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
