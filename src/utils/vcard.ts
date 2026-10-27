@@ -37,12 +37,18 @@ export function buildVCard(employee: Employee, officeName: string, website: stri
   return `\uFEFF${lines.join("\r\n")}\r\n`;
 }
 
-/** Kişiler uygulaması yalnızca sitede duran gerçek .vcf adresini açar. */
-export function vcardHref(slug: string): string {
-  return `/${slug}.vcf`;
-}
+export function downloadVCard(employee: Employee, officeName: string): void {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
 
-export function downloadVCard(slug: string): void {
-  if (typeof window === "undefined") return;
-  window.location.assign(vcardHref(slug));
+  const website = employee.contact.website.trim() || window.location.origin;
+  const vCardData = buildVCard(employee, officeName, website);
+  const blob = new Blob([vCardData], { type: "text/vcard;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${employee.slug}.vcf`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
