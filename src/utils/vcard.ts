@@ -34,7 +34,7 @@ export function buildVCard(employee: Employee, officeName: string, website: stri
   pushLine(lines, `ADR;CHARSET=UTF-8;TYPE=WORK:;;${escapeVCardValue(contact.address)};;;;`);
   lines.push("END:VCARD");
 
-  return `\uFEFF${lines.join("\r\n")}\r\n`;
+  return `${lines.join("\r\n")}\r\n`;
 }
 
 /**
