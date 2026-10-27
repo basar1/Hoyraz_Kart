@@ -59,7 +59,7 @@ export function DigitalCard({ employee }: { employee: Employee }) {
 
         <button
           type="button"
-          onClick={() => downloadVCard(employee, office.name)}
+          onClick={() => downloadVCard(employee.slug)}
           className="relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-4 text-base font-semibold text-on-accent shadow-lg transition hover:bg-accent-hover"
         >
           <Download className="size-5" aria-hidden="true" />
